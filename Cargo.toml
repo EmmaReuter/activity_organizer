@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 rand="0.8.5"
 notify-rust="4"
+rodio="0.16.0"
