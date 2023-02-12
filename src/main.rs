@@ -61,11 +61,7 @@ fn main() {
         println!("Twitter");
         sleep(0);
     }
-    if rand::random() {
-        println!("25 minutes");
-        sleep(20);
-    } else {
-        println!("5 minutes");
-        sleep(0)
-    }
+
+    println!("5 minutes");
+    sleep(0)
 }
