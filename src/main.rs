@@ -48,11 +48,10 @@ fn main() {
     if line.eq("y\n") {
         println!("woof");
         std::io::stdin().read_line(&mut line).unwrap();
-        choice = hacking1.choose(&mut rand::thread_rng()).unwrap();
+        choice = activities.choose(&mut rand::thread_rng()).unwrap();
     } else {
         choice = activities.choose(&mut rand::thread_rng()).unwrap();
     }
-
     println!("Work on {}", choice);
     sleep(20);
     println!("Your capable of growing through work");
@@ -61,7 +60,6 @@ fn main() {
         println!("Twitter");
         sleep(0);
     }
-
     println!("5 minutes");
     sleep(0)
 }
