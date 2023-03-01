@@ -25,20 +25,23 @@ fn sleep(x: u64) {
 }
 
 
-fn insert_rows() {
+fn insert_row(activity: &str) {
     let conn = Connection::open("todos.db").unwrap();
     conn.execute(
         "INSERT INTO todos (todo,date) values (?1, datetime('now','localtime'))",
-        &["Brush Teeth"] // empty list of parameters.
+        &[activity] // empty list of parameters.
     ).unwrap();
-    conn.execute(
-        "INSERT INTO todos (todo,date) values (?1, datetime('now','localtime'))",
-        &["Make Bed"] // empty list of parameters.
-    ).unwrap();
-    conn.execute(
-        "INSERT INTO todos (todo,date) values (?1, datetime('now','localtime'))",
-        &["Voice Training"] // empty list of parameters.
-    ).unwrap();
+
+}
+
+fn insert_rows() {
+    insert_row("make bed");
+    insert_row("Do 20 crunches");
+    insert_row("Do 20 squats");
+    insert_row("brush teeth");
+    insert_row("anki");
+    insert_row("Voice training");
+    insert_row("Oatmeal gf");
 }
 
 fn ding() {
@@ -70,7 +73,7 @@ fn main() {
         })
         .unwrap();
 
-    let school = vec!["English", "Compilers", "Research", "Anki"];
+    let school = vec!["English", "Compilers", "Research"];
     let mut hacking = vec![
         "Blog",
         "HTB",
@@ -83,6 +86,7 @@ fn main() {
     let mut general = vec!["Yoga", "Medidation", "Duilingo"];
 
     let mut activities = Vec::new();
+    activities.append(&mut school.clone());
     activities.append(&mut school.clone());
     activities.append(&mut school.clone());
     activities.append(&mut school.clone());
@@ -121,12 +125,16 @@ fn main() {
         sleep(20);
     }
 
-    println!("Your capable of growing through work");
-    std::io::stdin().read_line(&mut line).unwrap();
-    if rand::random() {
-        println!("Twitter");
-        sleep(0);
+    let affirmation = "Your capable of growing through work\n";
+    while line.ne(affirmation) {
+        println!("{}",line);
+        println!("{}",affirmation);
+        println!("Your capable of growing through work");
+        line = String::new();
+        std::io::stdin().read_line(&mut line).unwrap(); 
     }
-    println!("5 minutes");
-    sleep(0)
+    let times = vec![5,5,5,5,5,10,25];
+    let sleepnum = times.choose(&mut rand::thread_rng()).unwrap();
+    println!("{} minutes",sleepnum);
+    sleep(sleepnum-5);
 }
